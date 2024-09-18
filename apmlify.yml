@@ -1,0 +1,16 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci # Installs dependencies listed in package-lock.json for a clean build
+    build:
+      commands:
+        - npm run build # Runs the build script defined in your package.json
+  artifacts:
+    baseDirectory: /dist # Replace with your actual output folder from the build step (e.g., /build or /public)
+    files:
+      - '**/*' # Deploy all files from the build directory
+  cache:
+    paths:
+      - node_modules/**/* # Caches node_modules to speed up subsequent builds
