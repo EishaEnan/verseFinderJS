@@ -58,7 +58,6 @@ button:hover {
     border-radius: 5px;
     font-size: 14px;
     color: #302d2d;
-    filter: blur(0.5px); /* Corrected to use px */
     width: 100%;       /* Full width */
     max-width: 400px;  /* Align with container width */
 }
