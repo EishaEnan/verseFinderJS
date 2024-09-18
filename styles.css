@@ -50,6 +50,26 @@ button:hover {
 }
 
 /* Output styling */
+#gitHub {
+    padding: 10px;
+    font-size: 14px;
+    color: #28a745;
+    width: 100%;       /* Full width */
+    max-width: 400px;  /* Align with container width */
+}
+
+
+#gitHub a {
+    color: #28a745;
+    text-decoration: none;
+}
+
+#gitHub a:hover {
+    color: #218838;
+    text-decoration: underline;
+}
+
+/* Output styling */
 #output {
     margin-top: 20px;
     padding: 10px;
@@ -84,6 +104,16 @@ button:hover {
     text-align: center;
     width: 100%;       /* Full width */
     max-width: 400px;  /* Consistent with container */
+}
+
+/* Styling for Arabic text */
+.verse-box:lang(ar) {
+    font-family: 'Noto Sans Arabic', sans-serif; /* Arabic font */
+}
+
+/* Styling for Bengali text */
+.verse-box:lang(bn) {
+    font-family: 'Noto Sans Bengali', sans-serif; /* Bengali font */
 }
 
 /* Styling for verse translation */

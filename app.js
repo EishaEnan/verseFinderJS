@@ -1,16 +1,26 @@
 let processedData = [];
+let outputData = []; // New variable for output JSON data
 let currentSurah = null;
 let currentVerseNumber = null; // Tracks the last displayed verse number
 let isFirstVerse = true; // Flag to track the first verse
 
-// Load the processed JSON data (without punctuation)
-fetch('quran_data_bn.json')
+// Load the processed JSON data (for searching)
+fetch('quran_punctuation_removed.json')
     .then(response => response.json())
     .then(data => {
         processedData = data;
         console.log('Processed data loaded successfully.');
     })
     .catch(error => console.error('Error loading processed data:', error));
+
+// Load the output JSON data (for displaying the verses with meaning)
+fetch('quran_bn.json')
+    .then(response => response.json())
+    .then(data => {
+        outputData = data;
+        console.log('Output data loaded successfully.');
+    })
+    .catch(error => console.error('Error loading output data:', error));
 
 const startBtn = document.getElementById('startBtn');
 const output = document.getElementById('output');
@@ -97,9 +107,9 @@ function searchVerse(processedData, searchText, fuzzyThreshold = 0.8) {
     }
 }
 
-// Display a verse from a specific surah and verse number in a new box
+// Display a verse from the output JSON data (with meaning)
 function displayVerse(surahName, verseNumber) {
-    const surah = processedData.find(s => s.name === surahName);
+    const surah = outputData.find(s => s.name === surahName); // Use outputData for displaying
     if (surah) {
         const verse = surah.verses.find(v => v.id === verseNumber);
         if (verse) {
@@ -122,11 +132,13 @@ function displayVerse(surahName, verseNumber) {
 
             const verseTextDiv = document.createElement('div');
             verseTextDiv.classList.add('verse-text');
-            verseTextDiv.textContent = verse.text;
+            verseTextDiv.textContent = verse.text; // Use verse text from outputData
+            verseTextDiv.setAttribute('lang', 'ar'); // Set language attribute to Arabic
 
             const translationDiv = document.createElement('div');
             translationDiv.classList.add('verse-translation');
-            translationDiv.textContent = verse.translation; // Display verse translation
+            translationDiv.textContent = verse.translation; // Display verse translation from outputData
+            translationDiv.setAttribute('lang', 'bn'); // Set language attribute to Bengali
 
             verseBox.appendChild(verseNumberDiv);
             verseBox.appendChild(verseTextDiv);
@@ -136,7 +148,6 @@ function displayVerse(surahName, verseNumber) {
     }
 }
 
-
 // "Load More" button functionality
 loadMoreBtn.addEventListener('click', () => {
     loadMoreVerses(currentSurah, currentVerseNumber);
@@ -145,7 +156,7 @@ loadMoreBtn.addEventListener('click', () => {
 
 // Load 3 more verses from the current surah, without repeating surah info
 function loadMoreVerses(surahName, lastVerseNumber) {
-    const surah = processedData.find(s => s.name === surahName);
+    const surah = outputData.find(s => s.name === surahName); // Use outputData
     if (surah) {
         for (let i = 1; i <= 3; i++) {
             const nextVerseNumber = lastVerseNumber + i;

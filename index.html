@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <!-- Essential for responsiveness on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find A Verse in the Quran</title>
+    
+    <!-- Include Noto Sans Arabic for proper Arabic font rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
     <!-- Ensure scripts are properly linked -->
     <script defer src="app.js"></script>
@@ -12,10 +16,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Find Your Verse!</h1>
-        <button id="startBtn">Start Reciting</button>
+        <p id="gitHub"><a href="https://github.com/EishaEnan/verseFinderJS" target="_blank">View on GitHub</a></p>
+        <h1>Find A Verse!</h1>
+        <button id="startBtn">Start Reciting A Verse</button>
         <p id="output">Your recited verse will appear here</p>
         <p id="result">Match for your search will appear below</p>
+
     </div>
+
 </body>
 </html>
